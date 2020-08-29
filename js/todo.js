@@ -13,3 +13,6 @@ todos[0] = 'item001';
 //way to delete todos
 todos.splice(0,1);  //.splice removes (index of todo, no of items)
 
+
+
+//way
