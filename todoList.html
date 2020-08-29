@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Wil Son's Todo List</title>
+  </head>
+
+  <body>
+    <p>HTML GOES HERE</p>
+
+
+
+    <script>
+      const todoList = {
+          todos: ['item1', 'item 2', 'item3'],
+          displayTodos: function(){
+            console.log('My Todos: ', this.todos);
+            },
+          addTodo: function(todo){
+            this.todos.push(todo);
+            this.displayTodos();
+          }
+        };
+
+    </script>
+
+  </body>
+
+</html>
