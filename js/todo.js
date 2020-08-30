@@ -22,21 +22,19 @@ const todoList = {
       let totalTodos = this.todos.length;
       let completedTodos = 0;
 
-      for (let i = 0; i < this.todos.length; i++){
-        if (this.todos[i].completed === true){
+      this.todos.forEach(function(todo){
+        if (todo.completed === true){
           completedTodos++;
         }
-      }
-      if (completedTodos === totalTodos){
-        for (let i = 0; i < totalTodos; i++){
-          this.todos[i].completed = false;
+      });
+
+      this.todos.forEach(function(todo){
+        if (completedTodos === totalTodos){
+          todo.completed = false;
+        } else {
+          todo.completed = true;
         }
-      } 
-        else {
-          for (let i = 0; i < totalTodos; i++){
-            this.todos[i].completed = true;
-        }
-      }
+      });
     }
   };
  
@@ -77,22 +75,22 @@ const view = {
   displayTodos: function(){
     const todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
-    for (let i = 0; i < todoList.todos.length; i++){
-      const todoLi = document.createElement('li');
-      let todo = todoList.todos[i];
-      let todoTextWithCompletion = '';
 
-      if (todo.completed === true){
-        todoTextWithCompletion = '(x) ' + todo.todoText;
-      } else {
-        todoTextWithCompletion = '( ) ' + todo.todoText;
-      }
+    todoList.todos.forEach(function(todo, position){
+        const todoLi = document.createElement('li');
+        let todoTextWithCompletion = '';
 
-      todoLi.id = i;
-      todoLi.textContent = todoTextWithCompletion;
-      todoLi.appendChild(this.createDeleteButton());
-      todosUl.appendChild(todoLi);
-    }
+        if (todo.completed === true){
+          todoTextWithCompletion = '(x) ' + todo.todoText;
+        } else {
+          todoTextWithCompletion = '( ) ' + todo.todoText;
+        }
+
+        todoLi.id = position;
+        todoLi.textContent = todoTextWithCompletion;
+        todoLi.appendChild(this.createDeleteButton());
+        todosUl.appendChild(todoLi);
+    }, this);
   },
 
   createDeleteButton: function(){
